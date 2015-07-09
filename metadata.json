@@ -1,0 +1,65 @@
+{
+	"author": "Dustin Morgan",
+	"dependencies": [{
+			"name": "puppetlabs/stdlib",
+			"version_requirement": ">=4.6.0"
+		},{
+			"name": "puppetlabs/firewall",
+			"version_requirement": ">=1.1.3"
+		},{
+			"name": "kemra102/auditd",
+			"version_requirement": ">=1.0.2"
+		},{
+			"name": "fiddyspence/sysctl",
+			"version_requirement": ">=1.1.0"
+		},{
+			"name": "jfryman/selinux",
+			"version_requirement": ">=0.2.3"
+		},{
+			"name": "mjhas/postfix",
+			"version_requirement": ">=1.0.0"
+		}
+	],
+	"license": "Apache-2.0",
+	"name": "swizzley88-cis",
+	"operatingsystem_support": [{
+			"operatingsystem": "RedHat",
+			"operatingsystemrelease": [ "6",
+				"7"
+			]
+		},{
+			"operatingsystem": "Fedora",
+			"operatingsystemrelease": [ "19",
+				"20",
+				"21"
+			]
+		},{
+			"operatingsystem": "Debian",
+			"operatingsystemrelease": [ "6",
+				"7"
+			]
+		},{
+			"operatingsystem": "Ubuntu",
+			"operatingsystemrelease": [ "12.04",
+				"14.04"
+			]
+		}
+	],
+	"project_page": "https://github.com/swizzley/puppet-cis",
+	"requirements": [{
+			"name": "pe",
+			"version_requirement": "3.x"
+		},{
+			"name": "puppet",
+			"version_requirement": ">=2.7.20 <4.0.0"
+		}
+	],
+	"source": "https://github.com/swizzley/puppet-cis",
+	"summary": "CIS Benchmark for server hardening for RHEL and Ubuntu systems",
+	"tags": [ "cis",
+		"nist",
+		"security",
+		"hardening"
+	],
+	"version": "0.1.0"
+}

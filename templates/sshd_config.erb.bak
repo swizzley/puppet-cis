@@ -1,0 +1,43 @@
+# This file is managed by puppet
+
+Port 22
+Protocol 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+SyslogFacility AUTH
+LogLevel INFO
+X11Forwarding no
+MaxAuthTries 4
+IgnoreRhosts yes
+HostbasedAuthentication no
+PermitRootLogin no
+#TODO exception
+PermitEmptyPasswords yes
+PermitUserEnvironment no
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+ClientAliveInterval 300
+ClientAliveCountMax 0
+AllowUsers *
+AllowGroups admin 
+DenyUsers nobody 
+DenyGroups nogroup
+Banner /etc/motd
+KeyRegenerationInterval 3600
+ServerKeyBits 1024
+LoginGraceTime 120
+StrictModes yes
+RSAAuthentication yes
+PubkeyAuthentication yes
+RhostsRSAAuthentication no
+HostbasedAuthentication no
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+PrintMotd yes
+PrintLastLog yes
+TCPKeepAlive yes
+AcceptEnv LANG LC_*
+Subsystem sftp /usr/lib/openssh/sftp-server
+UsePAM yes
