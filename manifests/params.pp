@@ -19,6 +19,8 @@ class cis::params {
   $sender_hostname = 'sender.example.org'
   $masquerade_domains = 'example.org'
   $relayhost = 'receiver.example.org'
+  $ssh = false
+  $postfix = false
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Fedora' : {
@@ -28,7 +30,11 @@ class cis::params {
       $ssh_daemon = 'sshd'
       $http_daemon = 'httpd'
       $firewall_ui = ['firewalld']
-      $service_base = ['crond', $ssh_daemon, 'iptables']
+      if $ssh {
+        $service_base = ['crond', 'iptables', $ssh_daemon]
+      } else {
+        $service_base = ['crond', 'iptables']
+      }
       $packages = ['cronie-anacron', 'tcp_wrappers', 'iptables-services']
       $disabled = [
         'rhnsd',
@@ -81,7 +87,11 @@ class cis::params {
       $ssh_daemon = 'ssh'
       $firewall_ui = ['ufw']
       $http_daemon = 'apache2'
-      $service_base = ['cron', $ssh_daemon, 'apparmor']
+      if $ssh {
+        $service_base = ['cron', 'apparmor', $ssh_daemon]
+      } else {
+        $service_base = ['cron', 'apparmor']
+      }
       $packages = ['tcpd', 'apparmor-utils', 'apparmor-profiles']
       $disabled = ['rsync',]
       $ban_all = [
@@ -141,4 +151,5 @@ class cis::params {
     $banned = $ban_all
     $services = $service_base
   }
+
 }

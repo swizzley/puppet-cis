@@ -1,7 +1,11 @@
 class cis::kernel (
   $accept_all_src_routes = $cis::params::accept_all_src_routes,
-  $accept_redirects      = $cis::params::accept_redirects) inherits cis::params {
-  require cis::authentication
+  $accept_redirects      = $cis::params::accept_redirects,
+  $ssh                   = $cis::params::ssh) inherits cis::params {
+
+  if $ssh {
+    require cis::authentication
+  }
 
   # Disable
   sysctl { 'fs.suid_dumpable':
