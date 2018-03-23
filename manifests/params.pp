@@ -19,8 +19,8 @@ class cis::params {
   $sender_hostname = 'sender.example.org'
   $masquerade_domains = 'example.org'
   $relayhost = 'receiver.example.org'
-  $ssh = false
-  $postfix = false
+  $ssh = true
+  $postfix = true
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'Fedora' : {
