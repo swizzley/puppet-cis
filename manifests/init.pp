@@ -15,8 +15,9 @@
 #   Configuration:
 #      system-auth, shell, profile, tty, useradd, pam, banner
 #
-class cis ($secure_grub = $cis::params::secure_grub, $aide = $cis::params::aide, $nat_box = $cis::params::nat_box) inherits 
-cis::params {
+class cis ($secure_grub = $cis::params::secure_grub, $aide = $cis::params::aide, $nat_box = $cis::params::nat_box, $ssh = $cis::params::ssh,
+  $postfix = $cis::params::postfix) inherits cis::params {
+
   if $secure_grub {
     include cis::grub
   }
@@ -26,8 +27,8 @@ cis::params {
   }
 
   if $aide {
-    package { 'aide': ensure => 'installed', } ->
-    cron { 'aide_watch':
+    package { 'aide': ensure => 'installed', }
+    -> cron { 'aide_watch':
       command => '/usr/sbin/aide --check',
       user    => root,
       hour    => 5,
@@ -37,11 +38,13 @@ cis::params {
   include cis::packages
   include cis::services
   include cis::banned
-  include cis::authentication
+  if $ssh {
+    include cis::authentication
+  }
   include cis::cron
   include cis::auditd_rules
-  include cis::mail
+  if $postfix {
+    include cis::mail
+  }
   include cis::inspect
-  
-
 }
